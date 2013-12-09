@@ -2,10 +2,6 @@ package com.csci580.taptastic;
 
 import java.util.ArrayList;
 
-import com.csci580.taptastic.R;
-import com.csci580.taptastic.AppointmentsFragment.AppointmentItemAdapter;
-import com.tjerkw.slideexpandable.library.ActionSlideExpandableListView;
-
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -16,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import com.tjerkw.slideexpandable.library.ActionSlideExpandableListView;
 
 public class AnnouncmentsFragments extends Fragment {
 	
