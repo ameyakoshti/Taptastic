@@ -11,7 +11,6 @@
         android:layout_y="40dp" >
     </ListView>
 
-    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
