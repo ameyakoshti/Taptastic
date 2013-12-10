@@ -41,6 +41,8 @@ import android.nfc.tech.NdefFormatable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.provider.CalendarContract.Instances;
 import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -182,7 +184,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 
 		if (savedInstanceState == null) {
 			// on first time display view for first nav item
-			displayView(0);
+			displayView(0,false);
 		}
 		if (mNfcAdapter == null) {
 			// Stop here, we definitely need NFC
@@ -202,7 +204,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 	/**
 	 * Diplaying fragment view for selected nav drawer list item
 	 * */
-	private void displayView(int position) {
+	private void displayView(int position,boolean flag) {
 		// update the main content by replacing fragments
 		Fragment fragment = null;
 		switch (position) {
@@ -264,8 +266,10 @@ public class MainActivity extends Activity implements AsyncResponse {
 
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
+			if(flag)
+			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
+			else
 			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
-
 			// update selected item and title, then close the drawer
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
@@ -318,7 +322,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 		switch (item.getItemId()) {
 		case R.id.action_settings:
 			fragment = new SettingsFragment();
-			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 
 			// update selected item and title, then close the drawer
 			mDrawerList.setItemChecked(3, true);
@@ -331,7 +335,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 				fragment = new NewAppointment();
 			else if (fragmentSection == FragmentSection.ANNOUCEMENTS)
 				fragment = new NewAnnoucement();
-			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 
 			// update selected item and title, then close the drawer
 			mDrawerList.setItemChecked(3, true);
@@ -361,7 +365,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 	public void callfragment(String stats, Fragment fragment) {
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 
 			setTitle(stats);
 			mDrawerLayout.closeDrawer(mDrawerList);
@@ -379,18 +383,37 @@ public class MainActivity extends Activity implements AsyncResponse {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			// display view for selected nav drawer item
-			displayView(position);
+			displayView(position,true);
 		}
 	}
 
-	@Override
+	/*@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
 			moveTaskToBack(true);
 		}
 		return true;
-	}
+	}*/
+	boolean doubleBackToExitPressedOnce=false;
+	@Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            //super.onBackPressed();
+            moveTaskToBack(true);
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        getFragmentManager().popBackStackImmediate();
+        Toast.makeText(this, "Please click BACK again to exit", 1).show();
+        new Handler().postDelayed(new Runnable() {
 
+            @Override
+            public void run() {
+             doubleBackToExitPressedOnce=false;   
+
+            }
+        }, 1000);
+    } 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		if (menuCode == 0)
