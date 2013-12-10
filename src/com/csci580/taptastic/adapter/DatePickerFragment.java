@@ -1,6 +1,5 @@
 package com.csci580.taptastic.adapter;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;

@@ -48,23 +48,35 @@ public class CoursesFragment extends Fragment {
 						 * different action.
 						 */
 						Fragment attendance=new DisplayAttendanceFragment();
+						ArrayList<String> studentname=new ArrayList<String>();
+						ArrayList<String> studentattednace=new ArrayList<String>();
+						int numberOfStudents = 11;
 						String actionName = "";
 						if (buttonview.getId() == R.id.button1) {
 							actionName = "Fall 2013";
+							//populate name and attendance
 						} else if  (buttonview.getId() == R.id.button2){
 							actionName = "Summer 2013";
+							//populate name and attendance
 						} else {
 							actionName = "Spring 2013";
+						//	populate name and attendance
 						}
-						/**
-						 * For testing sake we just show a toast
-						 */
+						//Dummy List.
+						studentname.add("Sir Alex Fergusson"); studentattednace.add("10");
+						studentname.add("Ryan Giggs"); studentattednace.add("10");
+						studentname.add("Wayne Rooney"); studentattednace.add("10");
+						studentname.add("Nemanja Vidic"); studentattednace.add("10");
+						studentname.add("Micheal Carrick"); studentattednace.add("10");
+						studentname.add("Robin Van Persie"); studentattednace.add("10");
+						studentname.add("Rio Ferdinand"); studentattednace.add("10");
+						studentname.add("shris Smalling"); studentattednace.add("10");
+						studentname.add("Shinji Kagawa"); studentattednace.add("10");
+						studentname.add("David De Gea"); studentattednace.add("10");
+						studentname.add("Tom Cleverly"); studentattednace.add("10");
+						((DisplayAttendanceFragment) attendance).setArguments1(numberOfStudents,studentname,studentattednace);
 						((MainActivity)getActivity()).callfragment(actionName, attendance);
-						Toast.makeText(
-								getActivity(),
-								"Clicked Action: " + actionName
-										+ " in list item " + position,
-								Toast.LENGTH_SHORT).show();
+						
 					}
 
 					// note that we also add 1 or more ids to the

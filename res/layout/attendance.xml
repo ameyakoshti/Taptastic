@@ -1,15 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/AbsoluteLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="402dp"
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_x="0dp"
-        android:layout_y="56dp" >
+        android:layout_y="40dp" >
     </ListView>
+
+    
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </AbsoluteLayout>
