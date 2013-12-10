@@ -128,9 +128,10 @@ public class MainActivity extends Activity implements AsyncResponse {
 		// Home
 
 		// Courses/Statistics
-		if(LoginActivity.appMode=="Student")
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-		else navDrawerItems.add(new NavDrawerItem("Statistics", navMenuIcons.getResourceId(7, -1)));
+		if (LoginActivity.appMode == "Student")
+			navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+		else
+			navDrawerItems.add(new NavDrawerItem("Statistics", navMenuIcons.getResourceId(7, -1)));
 		// Annoucements
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1), true, "2"));
 		// Appointments
@@ -356,12 +357,12 @@ public class MainActivity extends Activity implements AsyncResponse {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	public void callfragment(String stats,Fragment fragment){
+
+	public void callfragment(String stats, Fragment fragment) {
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
-			
 			setTitle(stats);
 			mDrawerLayout.closeDrawer(mDrawerList);
 		} else {
@@ -370,7 +371,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 		}
 
 	}
-	
+
 	/**
 	 * Slide menu item click listener
 	 * */

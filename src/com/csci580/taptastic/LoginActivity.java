@@ -33,10 +33,13 @@ public class LoginActivity extends Activity {
 		btnSignIn = (Button) findViewById(R.id.buttonSignIN);
 		btnSignUp = (Button) findViewById(R.id.buttonSignUP);
 
+		//editTextUserName = (EditText) dialog.findViewById(R.id.editTextUserNameToLogin);
+		//editTextPassword = (EditText) dialog.findViewById(R.id.editTextPasswordToLogin);
+		
 		// Check if the user has already logged in previously
 		prefsPreviousLogin = getSharedPreferences("Login", 0);
 		if (prefsPreviousLogin.getString("password", null) != null) {
-			btnSignIn.performClick();
+			btnSignIn.performClick();			
 		}
 
 		// Set OnClick Listener on SignUp button
@@ -58,7 +61,7 @@ public class LoginActivity extends Activity {
 		// get the References of views
 		final EditText editTextUserName = (EditText) dialog.findViewById(R.id.editTextUserNameToLogin);
 		final EditText editTextPassword = (EditText) dialog.findViewById(R.id.editTextPasswordToLogin);
-
+		
 		Button btnSignIn = (Button) dialog.findViewById(R.id.buttonSignIn);
 
 		// Set On ClickListener
@@ -91,10 +94,7 @@ public class LoginActivity extends Activity {
 
 					Intent homePage = new Intent(getApplicationContext(), MainActivity.class);
 					startActivity(homePage);
-					// overridePendingTransition(R.anim.left_to_right,
-					// R.anim.right_to_left);
 					overridePendingTransition(R.anim.incoming, R.anim.outgoing);
-
 				} else {
 					Toast.makeText(LoginActivity.this, "Database :User Name or Password does not match", Toast.LENGTH_SHORT).show();
 				}
@@ -103,6 +103,8 @@ public class LoginActivity extends Activity {
 
 		// Check if the user has already logged in previously
 		if (prefsPreviousLogin.getString("password", null) != null) {
+			editTextUserName.setText(prefsPreviousLogin.getString("userName", null));
+			editTextPassword.setText(prefsPreviousLogin.getString("password", null));			
 			btnSignIn.performClick();
 		}
 		dialog.show();

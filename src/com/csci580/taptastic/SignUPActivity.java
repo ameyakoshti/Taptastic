@@ -1,8 +1,13 @@
 package com.csci580.taptastic;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,7 +15,7 @@ import android.widget.Toast;
 
 import com.csci580.taptastic.adapter.LoginDataBaseAdapter;
 
-public class SignUPActivity extends Activity {
+public class SignUPActivity extends Activity implements AsyncResponse {
 	EditText editTextUserName, editTextPassword, editTextConfirmPassword, editTextUSCID;
 	Button btnCreateAccount;
 
@@ -54,15 +59,21 @@ public class SignUPActivity extends Activity {
 					loginDataBaseAdapter.insertEntry(userName, uscID, password);
 
 					// Save the Data in Servlet
-					ServletCalls createAccount = new ServletCalls();
-					createAccount.execute("1", userName, uscID, password);
+					try {
+						TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+						String device_id = tm.getDeviceId();
+
+						ServletCalls createAccount = new ServletCalls();
+						createAccount.delegate = SignUPActivity.this;
+						createAccount.execute("1", userName.replace(" ", "+"), uscID, password, device_id);
+					} catch (Exception e) {
+						Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+					}
 
 					Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
 
 					Intent loginPage = new Intent(getApplicationContext(), LoginActivity.class);
 					startActivity(loginPage);
-					// overridePendingTransition(R.anim.left_to_right,
-					// R.anim.right_to_left);
 					overridePendingTransition(R.anim.incoming, R.anim.outgoing);
 				}
 			}
@@ -73,5 +84,24 @@ public class SignUPActivity extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		loginDataBaseAdapter.close();
+	}
+
+	public void processFinish(String servletResponse) {
+
+		JSONObject jObject;
+		String status = "";
+
+		try {
+			jObject = new JSONObject(servletResponse);
+			try {
+				status = jObject.getString("status").toString();
+			} catch (Exception e) {
+
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
 	}
 }

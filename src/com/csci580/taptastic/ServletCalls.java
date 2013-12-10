@@ -11,9 +11,9 @@ import android.util.Log;
 
 public class ServletCalls extends AsyncTask<String, Integer, String> {
 	String data = null;
-	String IPAddress = "192.168.0.3";
+	String IPAddress = "192.168.0.8";
 
-	public AsyncResponse delegate=null;
+	public AsyncResponse delegate = null;
 
 	@Override
 	protected String doInBackground(String... param) {
@@ -27,27 +27,42 @@ public class ServletCalls extends AsyncTask<String, Integer, String> {
 				String userName = param[1];
 				String USCID = param[2];
 				String password = param[3];
+				String imei = param[4];
 
-				strUrl = "http://" + IPAddress + ":8080/examples/servlets/servlet/taptasticServlet?id=1&uscid=" + USCID + "&uname=" + userName + "&pwd=" + password + "&tagid=15c88912";
+				strUrl = "http://" + IPAddress + ":8181/examples/servlets/servlet/taptasticServlet?id=1&uscid=" + USCID + "&uname=" + userName + "&pwd=" + password + "&tagid=15c88912" + "&imei="
+						+ imei;
 				break;
 			}
 			case 2: {
-				strUrl = "http://" + IPAddress + ":8080/examples/servlets/servlet/taptasticServlet?id=2&uscid=9790886604&uname=ameya&pwd=abc&tagid=15c88912";
+				strUrl = "http://" + IPAddress + ":8181/examples/servlets/servlet/taptasticServlet?id=2&uscid=9790886604&uname=ameya&pwd=abc&tagid=15c88912";
 				break;
 			}
 			case 3: {
 				String USCID = param[1];
 				String classID = param[2];
 
-				strUrl = "http://" + IPAddress + ":8080/examples/servlets/servlet/taptasticServlet?id=3&uscid=" + USCID + "&classid=" + classID + "&tagid=15c88912";
+				strUrl = "http://" + IPAddress + ":8181/examples/servlets/servlet/taptasticServlet?id=3&uscid=" + USCID + "&classid=" + classID + "&tagid=15c88912";
 				break;
 			}
 			case 4: {
-				strUrl = "http://" + IPAddress + ":8080/examples/servlets/servlet/taptasticServlet?id=4&uscid=9790886604&uname=ameya&pwd=abc&tagid=15c88912";
+				strUrl = "http://" + IPAddress + ":8181/examples/servlets/servlet/taptasticServlet?id=4&uscid=9790886604&uname=ameya&pwd=abc&tagid=15c88912";
 				break;
 			}
 			case 5: {
-				strUrl = "http://" + IPAddress + ":8080/examples/servlets/servlet/taptasticServlet?id=5&uscid=9790886604&uname=ameya&pwd=abc&tagid=15c88912";
+				strUrl = "http://" + IPAddress + ":8181/examples/servlets/servlet/taptasticServlet?id=5&uscid=9790886604&uname=ameya&pwd=abc&tagid=15c88912";
+				break;
+			}
+			case 6: {
+				String USCID = param[1];
+				String datetime = param[3];
+				String query = param[4];
+				String type = param[5];
+
+				strUrl = "http://" + IPAddress + ":8181/examples/servlets/servlet/taptasticServlet?id=6&uscid=" + USCID + "&tagid=15c88912" + "&ts=" + datetime + "&info=" + query + "&type=" + type;
+				break;
+			}
+			case 7: {
+				strUrl = "http://" + IPAddress + ":8181/examples/servlets/servlet/taptasticServlet?id=7&tagid=15c88912";
 				break;
 			}
 			}
@@ -75,6 +90,6 @@ public class ServletCalls extends AsyncTask<String, Integer, String> {
 
 	@Override
 	protected void onPostExecute(String result) {
-		 delegate.processFinish(result);
+		delegate.processFinish(result);
 	}
 }
