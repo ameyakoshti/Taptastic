@@ -55,25 +55,34 @@ public class CoursesFragment extends Fragment {
 						if (buttonview.getId() == R.id.button1) {
 							actionName = "Fall 2013";
 							//populate name and attendance
-						} else if  (buttonview.getId() == R.id.button2){
-							actionName = "Summer 2013";
-							//populate name and attendance
-						} else {
+							
+							studentname.add("Ryan Giggs"); studentattednace.add("4");
+							studentname.add("Wayne Rooney"); studentattednace.add("8");
+							studentname.add("Nemanja Vidic"); studentattednace.add("7");
+							studentname.add("Micheal Carrick"); studentattednace.add("10");
+							studentname.add("Robin Van Persie"); studentattednace.add("6");
+							studentname.add("Rio Ferdinand"); studentattednace.add("8");
+							studentname.add("shris Smalling"); studentattednace.add("12");
+							studentname.add("Shinji Kagawa"); studentattednace.add("10");
+							studentname.add("David De Gea"); studentattednace.add("15");
+							studentname.add("Tom Cleverly"); studentattednace.add("15");
+						} else if  (buttonview.getId() == R.id.button3){
 							actionName = "Spring 2013";
-						//	populate name and attendance
+							//populate name and attendance
+							studentname.add("Sir Alex Fergusson"); studentattednace.add("15");
+							studentname.add("Ryan Giggs"); studentattednace.add("5");
+							studentname.add("Wayne Rooney"); studentattednace.add("8");
+							studentname.add("Nemanja Vidic"); studentattednace.add("7");
+							studentname.add("Micheal Carrick"); studentattednace.add("10");
+							studentname.add("Robin Van Persie"); studentattednace.add("6");
+							studentname.add("Rio Ferdinand"); studentattednace.add("8");
+							studentname.add("shris Smalling"); studentattednace.add("12");
+							studentname.add("Shinji Kagawa"); studentattednace.add("10");
+							studentname.add("David De Gea"); studentattednace.add("15");
+							studentname.add("Tom Cleverly"); studentattednace.add("15");
 						}
 						//Dummy List.
-						studentname.add("Sir Alex Fergusson"); studentattednace.add("10");
-						studentname.add("Ryan Giggs"); studentattednace.add("10");
-						studentname.add("Wayne Rooney"); studentattednace.add("10");
-						studentname.add("Nemanja Vidic"); studentattednace.add("10");
-						studentname.add("Micheal Carrick"); studentattednace.add("10");
-						studentname.add("Robin Van Persie"); studentattednace.add("10");
-						studentname.add("Rio Ferdinand"); studentattednace.add("10");
-						studentname.add("shris Smalling"); studentattednace.add("10");
-						studentname.add("Shinji Kagawa"); studentattednace.add("10");
-						studentname.add("David De Gea"); studentattednace.add("10");
-						studentname.add("Tom Cleverly"); studentattednace.add("10");
+						
 						((DisplayAttendanceFragment) attendance).setArguments1(numberOfStudents,studentname,studentattednace);
 						((MainActivity)getActivity()).callfragment(actionName, attendance);
 						

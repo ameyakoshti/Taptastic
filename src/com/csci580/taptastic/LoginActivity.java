@@ -16,7 +16,7 @@ public class LoginActivity extends Activity {
 	Button btnSignIn, btnSignUp;
 	LoginDataBaseAdapter loginDataBaseAdapter;
 	String loggedIn;
-	public static String appMode="Professor";
+	public static String appMode="Student";
 	// SharedPreferences prefs;
 	SharedPreferences prefsPreviousLogin;
 

@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class ServletCalls extends AsyncTask<String, Integer, String> {
 	String data = null;
-	String IPAddress = "192.168.0.8";
+	String IPAddress = "10.120.38.178";
 
 	public AsyncResponse delegate = null;
 

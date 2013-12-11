@@ -331,11 +331,13 @@ public class MainActivity extends Activity implements AsyncResponse {
 			mDrawerLayout.closeDrawer(mDrawerList);
 			return true;
 		case R.id.action_add:
-			if (fragmentSection == FragmentSection.APPOINTMENTS)
+			if (fragmentSection == FragmentSection.APPOINTMENTS){
 				fragment = new NewAppointment();
-			else if (fragmentSection == FragmentSection.ANNOUCEMENTS)
+				fragmentSection=FragmentSection.NEWAPPOINTMENTS;}
+			else if (fragmentSection == FragmentSection.ANNOUCEMENTS){
 				fragment = new NewAnnoucement();
-			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
+				fragmentSection=FragmentSection.NEWANNOUCEMENTS;}
+			fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
 			// update selected item and title, then close the drawer
 			mDrawerList.setItemChecked(3, true);
@@ -344,7 +346,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 			mDrawerLayout.closeDrawer(mDrawerList);
 
 			return true;
-		case R.id.action_switch:
+	/*	case R.id.action_switch:
 			if (LoginActivity.appMode == "Student") {
 				LoginActivity.appMode = "Professor";
 				Toast.makeText(this, "Professor Mode", 10).show();
@@ -356,7 +358,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 		case R.id.action_apply:
 			applySettings();
 			return true;
-
+*/
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -403,7 +405,12 @@ public class MainActivity extends Activity implements AsyncResponse {
             return;
         }
         this.doubleBackToExitPressedOnce = true;
-        getFragmentManager().popBackStackImmediate();
+        if(fragmentSection==FragmentSection.NEWANNOUCEMENTS){
+        	displayView(1, true);
+        }else if(fragmentSection==FragmentSection.NEWAPPOINTMENTS){
+        	displayView(2, true);
+        }
+        else getFragmentManager().popBackStack();
         Toast.makeText(this, "Please click BACK again to exit", 1).show();
         new Handler().postDelayed(new Runnable() {
 
@@ -589,38 +596,19 @@ public class MainActivity extends Activity implements AsyncResponse {
 
 		JSONObject jObject;
 		String status = "";
-		String posts = "";
-		Boolean resultsFound;
 
 		try {
 			jObject = new JSONObject(servletResponse);
-			JSONObject response;
 			try {
-				response = jObject.getJSONObject("results");
-				status = response.get("status").toString();
-				posts = response.get("posts").toString().trim();
-				resultsFound = true;
+				status = jObject.getString("status").toString();
 			} catch (Exception e) {
-				resultsFound = false;
 			}
 
-			if (!resultsFound) {
-				try {
-					response = jObject.getJSONObject("records");
-					status = response.get("status").toString();
-					posts = response.get("posts").toString();
-				} catch (Exception e) {
-				}
-			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
 		Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
-
-		if (!posts.equals("")) {
-			sendnotification("Announcement", posts);
-		}
 	}
 
 	public void markAttendance() {
@@ -823,11 +811,13 @@ public class MainActivity extends Activity implements AsyncResponse {
 
 	private void handleIntent(Intent intent) {
 		String action = intent.getAction();
+		applySettings();
 		if (nfcMode == NfcMode.READ) {
-			Toast.makeText(this, "ReadMode", 100).show();
+			
 			if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)) {
 				Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 				nfcTagId = bytesToHexString(tag.getId());
+	//			applySettings();
 				// idText.setText(bytesToHexString(tag.getId()));
 			} else if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
 
@@ -837,6 +827,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 
 					Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 					nfcTagId = bytesToHexString(tag.getId());
+			//		applySettings();
 					// idText.setText(bytesToHexString(tag.getId()));
 					new NdefReaderTask().execute(tag);
 
@@ -849,6 +840,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 				Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 				// idText.setText(bytesToHexString(tag.getId()));
 				nfcTagId = bytesToHexString(tag.getId());
+				//applySettings();
 				String[] techList = tag.getTechList();
 				String searchedTech = Ndef.class.getName();
 
@@ -860,7 +852,7 @@ public class MainActivity extends Activity implements AsyncResponse {
 				}
 			}
 		} else if (nfcMode == NfcMode.WRITE) {
-			Toast.makeText(this, "WriteMode", 10).show();
+			
 			NdefRecord records[] = { NdefRecord.createMime(MIME_TEXT_PLAIN, "Sample Text".getBytes()),
 					// nfcText.getText().toString().getBytes())
 

@@ -72,16 +72,16 @@ public class AnnouncmentsFragments extends Fragment implements AsyncResponse {
 						image.setImageResource(R.drawable.ic_580);
 
 				}
-				if (tweet.equals("\nProject Submission Due Date Changed")) {
-					tview.setText("\nProject Submission date has been changed to 12/31/2020");
+				if (tweet.equals("sample")) {
+					tview.setText("\nfirst sample");
 					tview1.setText("Time Posted: 12/10/2013 6:00pm");
 				}
-				if (tweet.equals("\nFinal Exams Preponed")) {
-					tview.setText("\nFinal Exam preponed to 12/10/2013");
+				if (tweet.equals("one more sample")) {
+					tview.setText("second sample");
 					tview1.setText("Time Posted: 12/10/2013 6:00am");
 				}
-				if (tweet.equals("\nHolidays Extended")) {
-					tview.setText("\nHolidays has been extended until further notice");
+				if (tweet.equals("what is")) {
+					tview.setText("Holidays has been extended until further notice");
 					tview1.setText("Time Posted: 12/8/2013 6:00pm");
 				}
 			}
@@ -101,7 +101,9 @@ public class AnnouncmentsFragments extends Fragment implements AsyncResponse {
 			try {
 				posts = jObject.getJSONArray("posts");
 				for (int i = 0; i < posts.length(); i++) {
+					if(i%2==0)
 					type.add("588");
+					else type.add("580");
 					values.add(posts.getJSONObject(i).get("post").toString());
 				}
 			} catch (Exception e) {

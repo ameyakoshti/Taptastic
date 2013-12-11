@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/textView1"
@@ -30,7 +30,16 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_alignRight="@+id/imageView1"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="44dp"
-        android:text="Display Help Document..\n\n\n" />
+        android:layout_marginTop="10dp"
+        android:text="This page documents the usage of our app. It provides a detailed step-by-step working of the app.\n
+		
+		1. Sign Up with your credentials\n
+		2. Login with your credentials\n
+		3. Tap on the NFC tag\n
+		4. View all your appointments in the ‘Appointments’ tab\n
+		5. Create an appointment by providing a time, description of the appointment and select a type.\n
+		6. View all posts related to the class in the ‘Announcements’ tab.\n
+		7. Use Setting tab to enable settings that need to be activated on tap and to set location for your recordings.\n
+		8. Record lectures and take pictures using Taptastic " />
 
 </RelativeLayout>

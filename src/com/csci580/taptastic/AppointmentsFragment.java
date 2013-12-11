@@ -114,7 +114,7 @@ public class AppointmentsFragment extends ListFragment implements AsyncResponse 
 		}
 
 		if (LoginActivity.appMode == "Student") {
-			return new AppointmentItemAdapter(getActivity(), R.layout.expandable_list_item, R.id.text, values, type);
+			return new AppointmentItemAdapter(getActivity(), R.layout.expandable_list_items, R.id.text, values, type);
 		}
 		return new AppointmentItemAdapter(getActivity(), R.layout.expandable_list_item, R.id.text, values, type);
 	}
@@ -134,14 +134,14 @@ public class AppointmentsFragment extends ListFragment implements AsyncResponse 
 				 */
 				String actionName = "";
 				if (buttonview.getId() == R.id.buttonA) {
-					actionName = "buttonA";
+					actionName = "Appointment Request Accepted";
 				} else {
-					actionName = "ButtonB";
+					actionName = "Appointment Request Rejected";
 				}
 				/**
 				 * For testing sake we just show a toast
 				 */
-				Toast.makeText(getActivity(), "Clicked Action: " + actionName + " in list item " + position, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), actionName, Toast.LENGTH_SHORT).show();
 			}
 
 			// note that we also add 1 or more ids to the setItemActionListener

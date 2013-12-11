@@ -13,10 +13,13 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="62dp"
-            android:layout_weight="0.05"
-            android:src="@drawable/ic_course588" />
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight=".2"
+			android:padding="1dp"
+            android:src="@drawable/ic_gicon" />
 
         <TextView
             android:id="@+id/text"
@@ -32,7 +35,7 @@
             android:layout_height="fill_parent"
             android:layout_alignBottom="@+id/text"
             android:layout_alignParentRight="true"
-            android:background="@drawable/ic_arrow"
+            android:background="@drawable/blank"
             android:textSize="30dp" />
 
     </LinearLayout>
@@ -40,24 +43,8 @@
     <AbsoluteLayout
         android:id="@+id/expandable"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0sp"
         android:background="#FFFFFF" >
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_x="4dp"
-            android:layout_y="4dp"
-            android:text="Fall 2013" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_x="4dp"
-            android:layout_y="54dp"
-            android:text="Spring 2013" />
 
     </AbsoluteLayout>
 

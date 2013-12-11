@@ -43,62 +43,23 @@
     <AbsoluteLayout
         android:id="@+id/expandable"
         android:layout_width="fill_parent"
-        android:layout_height="220dp"
+        android:layout_height="162dp"
         android:background="#FFFFFF" >
-
-        <EditText
-            android:id="@+id/editText4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_x="50dp"
-            android:layout_y="94dp"
-            android:ems="10"
-            android:inputType="textMultiLine" />
-
-        <EditText
-            android:id="@+id/editText3"
-            android:layout_width="88dp"
-            android:layout_height="wrap_content"
-            android:layout_x="175dp"
-            android:layout_y="58dp"
-            android:ems="10"
-            android:inputType="time"
-            android:text="5:00pm" />
-
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="127dp"
-            android:layout_height="wrap_content"
-            android:layout_x="50dp"
-            android:layout_y="58dp"
-            android:ems="10"
-            android:inputType="date"
-            android:text="12/10/2013" />
-
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_x="50dp"
-            android:layout_y="24dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Kevin Andrew" />
 
         <ImageButton
             android:id="@+id/buttonA"
-            android:layout_width="wrap_content"
+            android:layout_width="76dp"
             android:layout_height="wrap_content"
-            android:layout_x="104dp"
-            android:layout_y="150dp"
+            android:layout_x="74dp"
+            android:layout_y="57dp"
             android:src="@drawable/check" />
 
         <ImageButton
             android:id="@+id/buttonB"
-            android:layout_width="wrap_content"
+            android:layout_width="76dp"
             android:layout_height="wrap_content"
-            android:layout_x="177dp"
-            android:layout_y="150dp"
+            android:layout_x="174dp"
+            android:layout_y="56dp"
             android:src="@drawable/cancel" />
 
     </AbsoluteLayout>
